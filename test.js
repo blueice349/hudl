@@ -1,68 +1,142 @@
-// https://www.lambdatest.com/blog/automation-testing-with-selenium-javascript/
-const { By, Key, Builder } = require( "selenium-webdriver" );
-require( "chromedriver" );
+require('chromedriver');
 
-var hudlLogin = "https://www.hudl.com/login";
-var hudlLogout = "https://www.hudl.com/logout";
-var goodEmail = "blueice349@gmail.com";
-var goodPassword = "Asapjax1";
-var badEmail = "blueice349@gmail.comm";
+const { Builder, By, Key, until } = require('selenium-webdriver');
+const assert = require('assert');
+
+var hudlUrl = 'https://www.hudl.com/';
+var hudlHomeUrl = 'https://www.hudl.com/home';
+var hudlLoginUrl = 'https://www.hudl.com/login';
+var hudlLogoutUrl = 'https://www.hudl.com/logout';
+var login = '[data-qa-id="login"]';
+var hudlCorrectEmail = process.env.HUDL_CORRECT_EMAIL;
+var hudlCorrectPassword = process.env.HUDL_CORRECT_PASSWORD;
+var hudlWrongEmail = 'noemail';
+var hudlWrongPassword = 'password';
+var emailInput = '[data-qa-id="email-input"]';
+var passwordInput = '[data-qa-id="password-input"]';
+var loginBtn = '[data-qa-id="login-btn"]';
+var loginError = '[data-qa-id="error-display"]';
+var videoElement = '[data-qa-id="webnav-primarynav-video"]';
 
 async function goodLogin() {
-
-    //To wait for browser to build and launch properly
+    //open Chrome browser
     let driver = await new Builder().forBrowser("chrome").build();
 
-    //To go to hudl site from the chrome browser .
-    await driver.get( hudlLogin );
+    try {
+        //open the website
+        await driver.get(hudlUrl);
+        let hudlUrlTitle = await driver.getTitle();
+        //assert thqt the title is correcct "Hudl: We Help Teams and Athletes Win"
+        assert.strictEqual(hudlUrlTitle, "Hudl: We Help Teams and Athletes Win");
+        await driver.findElement(By.css(login)).click();
+        let loginTitle = await driver.getTitle();
+        //assert that the title text is the correct "Log In"
+        assert.strictEqual(loginTitle, "Log In");
+        
+        //find email, password and login. Enter good email address, good password and click login
+        await driver.findElement(By.css(emailInput)).sendKeys(hudlCorrectEmail);
+        await driver.findElement(By.css(passwordInput)).sendKeys(hudlCorrectPassword);
+        await driver.findElement(By.css(loginBtn)).click();
+        let videoElementPresent = await driver.wait(until.elementLocated(By.css(videoElement)), 30000).getText();
+        assert.strictEqual(videoElementPresent, "Video");
+        await driver.get(hudlHomeUrl);
 
-    //To enter good email and password and login
-    await driver.findElement(By.id("email")).sendKeys(goodEmail);
-    await driver.findElement(By.id("password")).sendKeys(goodPassword);
-    await driver.findElement(By.id("logIn")).click();
+        //get the title
+        let homeTitle = await driver.getTitle();
+        //assert that thetitle text is the correct "Home - Hudl"
+        assert.strictEqual(homeTitle, "Home - Hudl");
+        await driver.get(hudlLogoutUrl);
+        let logoutUrl = await driver.getCurrentUrl();
+        assert.strictEqual(logoutUrl, hudlUrl);
+        console.log("TEST PASSED");
 
-    //Verify the page title and print it
-    driver.sleep(2000).then( function () {
-       driver.getTitle().then(function (title) {
-            if (title === 'Home - Hudl') {
-                console.log('Good login test passed, Title is:', title);
-            } else {
-                console.log('Good login test failed, Title is:', title);
-            }
-            driver.quit();
-        });
-    });
-}
+    } finally {
+        //close the browser
+        await driver.quit();
+    }
+};
 
 async function badEmailLogin() {
-
-    //To wait for browser to build and launch properly
+    //open Chrome browser
     let driver = await new Builder().forBrowser("chrome").build();
 
-    //To go to hudl site from the chrome browser .
-    await driver.get(hudlLogin);
+    try {
+        //open the website
+        await driver.get(hudlUrl);
+        let hudlUrlTitle = await driver.getTitle();
+        //assert thqt the title is correcct "Hudl: We Help Teams and Athletes Win"
+        assert.strictEqual(hudlUrlTitle, "Hudl: We Help Teams and Athletes Win");
+        await driver.findElement(By.css(login)).click();
+        let loginTitle = await driver.getTitle();
+        //assert that thetitle text is the correct "Log In"
+        assert.strictEqual(loginTitle, "Log In");
 
-    //To enter bad email good password and try to login
-    await driver.findElement(By.id("email")).sendKeys(badEmail);
-    await driver.findElement(By.id("password")).sendKeys(goodPassword);
-    await driver.findElement(By.id("logIn")).click();
+        //find email, password and login. Enter bad email address, good password and click login
+        await driver.findElement(By.css(emailInput)).sendKeys(hudlWrongEmail);
+        await driver.findElement(By.css(passwordInput)).sendKeys(hudlCorrectPassword);
+        await driver.findElement(By.css(loginBtn)).click();
+        let loginErrorElement = await driver.wait(until.elementLocated(By.css(loginError)), 30000);
+        await driver.wait(until.elementIsVisible(loginErrorElement), 30000);
+        // finds error text
+        let errorMessage = await driver.findElement(By.css(loginError)).getText();
+        assert.strictEqual(errorMessage, "We didn't recognize that email and/or password.Need help?");
+        await driver.get(hudlHomeUrl);
 
-    //Verify the page title and print it
-    driver.sleep(2000).then(function () {
-        driver.getTitle().then(function (title) {
-            if (title === 'Log In') {
-                console.log('Bad email login test passed, Title is:', title);
-            } else {
-                console.log('Bad email login test failed, Title is:', title);
-            }
-            driver.quit();
-        });
-    });
-}
+        //get the title
+        let homeTitle = await driver.getTitle();
+        //assert that thetitle text is the correct "Log In"
+        assert.strictEqual(homeTitle, "Log In");
+        console.log("TEST PASSED");
+
+    } finally {
+        //close the browser
+        await driver.quit();
+    }
+};
+
+async function badPasswordLogin() {
+    //open Chrome browser
+    let driver = await new Builder().forBrowser("chrome").build();
+
+    try {
+        //open the website
+        await driver.get(hudlUrl);
+        let hudlUrlTitle = await driver.getTitle();
+        //assert thqt the title is correcct "Hudl: We Help Teams and Athletes Win"
+        assert.strictEqual(hudlUrlTitle, "Hudl: We Help Teams and Athletes Win");
+        //click login
+        await driver.findElement(By.css(login)).click();
+        let loginTitle = await driver.getTitle();
+        //assert that thetitle text is the correct "Log In"
+        assert.strictEqual(loginTitle, "Log In");
+
+        //find email, password and login. Enter good email address, bad password and click login
+        await driver.findElement(By.css(emailInput)).sendKeys(hudlCorrectEmail);
+        await driver.findElement(By.css(passwordInput)).sendKeys(hudlWrongPassword);
+        await driver.findElement(By.css(loginBtn)).click(); 
+        let loginErrorElement = await driver.wait(until.elementLocated(By.css(loginError)), 30000);
+        await driver.wait(until.elementIsVisible(loginErrorElement), 30000);
+        //finds error text
+        let errorMessage = await driver.findElement(By.css(loginError)).getText();
+        assert.strictEqual(errorMessage, "We didn't recognize that email and/or password.Need help?");
+        await driver.get(hudlHomeUrl);
+
+        //get the title
+        let homeTitle = await driver.getTitle();
+        //assert that thetitle text is the correct "Log In"
+        assert.strictEqual(homeTitle, "Log In");
+        console.log("TEST PASSED");
+
+    } finally {
+        //close the browser
+        await driver.quit();
+    }
+};
 
 const run = async () => {
     await goodLogin();
     await badEmailLogin();
+    await badPasswordLogin();
 }
 
 run();
