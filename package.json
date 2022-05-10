@@ -1,0 +1,34 @@
+{
+    "name": "hudl",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon single_test.js",
+        "single": "./node_modules/.bin/mocha single_test.js"
+    },
+    "keywords": [
+        "mocha",
+        "bdd",
+        "selenium",
+        "examples",
+        "test",
+        "bdd",
+        "tdd",
+        "tap",
+        "framework"
+    ],
+    "author": "mike",
+    "license": "ISC",
+    "dependencies": {
+        "chai": "^4.3.6",
+        "chromedriver": "^101.0.0",
+        "geckodriver": "^3.0.1",
+        "nodemon": "^2.0.16",
+        "selenium-webdriver": "^4.1.2"
+    },
+    "devDependencies": {
+        "mocha": "^10.0.0"
+    }
+}
