@@ -100,6 +100,115 @@ let driver;
 
     });
 
+    async function goToHudlHomeUrl() {
+
+        try {
+
+            //should check that the title text is the correct "Home - Hudl"
+            await driver.get(hudlHomeUrl);
+            let currentUrl = await driver.getCurrentUrl();
+            assert.strictEqual(currentUrl, hudlHomeUrl);
+
+        } catch (e) {
+
+            assert.fail(e);
+
+        }
+
+    };
+
+    async function loginError() {
+
+        try {
+
+            //find the error text
+            let errorMessage = await driver.findElement(By.css(loginError)).getText();
+            assert.strictEqual(errorMessage, "We didn't recognize that email and/or password.Need help?");
+
+        } catch(e) {
+
+            assert.fail(e);
+
+        }
+
+    };
+
+    async function loginPageCheck() {
+
+        try {
+
+            //should check that the title text is the correct "Log In"
+            let homeTitle = await driver.getTitle();
+            assert.strictEqual(homeTitle, "Log In");
+
+        } catch (e) {
+
+            assert.fail(e);
+
+        }
+
+    };
+
+    async function hudlHomePageCheck(videoText) {
+
+        this.timeout(12000);
+
+        try {
+
+            //checks to see if we are on home page after login
+            //let videoElementPresent = await driver.wait(until.elementLocated(By.css(videoElement)), 30000).getText();
+            assert.strictEqual(videoElementPresent, videoText);
+            goToHudlHomeUrl();
+            //await driver.get(hudlHomeUrl);
+
+            //should check that the title text is the correct "Home - Hudl"
+            let homeTitle = await driver.getTitle();
+            assert.strictEqual(homeTitle, "Home - Hudl");
+
+        } catch (e) {
+
+            assert.fail(e);
+
+        }
+
+    };
+
+    async function hudlLogin(email, password) {
+
+        try {
+
+            //find email, password and login. Then Enter good email address, good password and click login
+            await driver.findElement(By.css(emailInput)).sendKeys(email);
+            await driver.findElement(By.css(passwordInput)).sendKeys(password);
+            await driver.findElement(By.css(loginBtn)).click();
+
+            console.log('email: ' + email + ' password: ' + password);
+
+        } catch (e) {
+
+            assert.fail(e);
+
+        }
+
+    };
+
+    async function hudlLogout() {
+
+        try {
+
+            //should check that the title text is the correct "Home - Hudl"
+            await driver.get(hudlLogoutUrl);
+            let logoutUrl = await driver.getCurrentUrl();
+            assert.strictEqual(logoutUrl, hudlUrl)
+
+        } catch (e) {
+
+            assert.fail(e);
+
+        }
+
+    };
+
     it('Should try to login to hudl with correct email and password', async function () {
 
         //set the time out for this test to 2 mins, if 2 mins happens the test will fail.
@@ -107,22 +216,17 @@ let driver;
 
         try {
 
-            //find email, password and login. Then Enter good email address, good password and click login
-            await driver.findElement(By.css(emailInput)).sendKeys(hudlCorrectEmail);
-            await driver.findElement(By.css(passwordInput)).sendKeys(hudlCorrectPassword);
-            await driver.findElement(By.css(loginBtn)).click();
+            //should login to https://hudl.com with correct email and password
+            hudlLogin(hudlCorrectEmail, hudlCorrectPassword);
+            
+            //wait for video element on page
             let videoElementPresent = await driver.wait(until.elementLocated(By.css(videoElement)), 30000).getText();
-            assert.strictEqual(videoElementPresent, "Video");
-            await driver.get(hudlHomeUrl);
-
+            
             //should check that the title text is the correct "Home - Hudl"
-            let homeTitle = await driver.getTitle();
-            assert.strictEqual(homeTitle, "Home - Hudl");
+            hudlHomePageCheck(videoElementPresent);
 
             //should naviage to the logout URL and make sure the page logged out.
-            await driver.get(hudlLogoutUrl);
-            let logoutUrl = await driver.getCurrentUrl();
-            assert.strictEqual(logoutUrl, hudlUrl);
+            hudlLogout();
 
         } catch (e) {
 
@@ -138,21 +242,17 @@ let driver;
 
         try {
 
-            //find email, password and login. Enter bad email address, good password and click login
-            await driver.findElement(By.css(emailInput)).sendKeys(hudlWrongEmail);
-            await driver.findElement(By.css(passwordInput)).sendKeys(hudlCorrectPassword);
-            await driver.findElement(By.css(loginBtn)).click();
-            let loginErrorElement = await driver.wait(until.elementLocated(By.css(loginError)), 30000);
-            await driver.wait(until.elementIsVisible(loginErrorElement), 30000);
+            //should try to login to https://hudl.com with wrong email and correct password
+            hudlLogin(hudlWrongEmail, hudlCorrectPassword);
+        
+            //find the login error text
+            loginError();
 
-            //find the error text
-            let errorMessage = await driver.findElement(By.css(loginError)).getText();
-            assert.strictEqual(errorMessage, "We didn't recognize that email and/or password.Need help?");
-            await driver.get(hudlHomeUrl);
+            //go to https://hudl.com
+            goToHudlHomeUrl();
 
             //should check that the title text is the correct "Log In"
-            let homeTitle = await driver.getTitle();
-            assert.strictEqual(homeTitle, "Log In");
+            loginPageCheck();
 
         } catch (e) {
 
@@ -168,21 +268,17 @@ let driver;
 
         try {
 
-            //find email, password and login. Enter good email address, bad password and click login
-            await driver.findElement(By.css(emailInput)).sendKeys(hudlCorrectEmail);
-            await driver.findElement(By.css(passwordInput)).sendKeys(hudlWrongPassword);
-            await driver.findElement(By.css(loginBtn)).click();
-            let loginErrorElement = await driver.wait(until.elementLocated(By.css(loginError)), 30000);
-            await driver.wait(until.elementIsVisible(loginErrorElement), 30000);
+            //should try to login to https://hudl.com with wrong email and correct password
+            hudlLogin(hudlWrongEmail, hudlWrongPassword);
 
-            //find the error text
-            let errorMessage = await driver.findElement(By.css(loginError)).getText();
-            assert.strictEqual(errorMessage, "We didn't recognize that email and/or password.Need help?");
-            await driver.get(hudlHomeUrl);
+            //find the login error text
+            loginError();
+
+            //go to https://hudl.com
+            goToHudlHomeUrl();
 
             //should check that the title text is the correct "Log In"
-            let homeTitle = await driver.getTitle();
-            assert.strictEqual(homeTitle, "Log In");
+            loginPageCheck();
 
         } catch (e) {
 
