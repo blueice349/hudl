@@ -32,7 +32,7 @@ let driver;
         //sets time out that runs before all the test.
         this.timeout(12000);
 
-          //should start the chrome browser before each test
+          //should start the chrome browser before any test runs
           driver = await new Builder().forBrowser('chrome').build();
           driverRunning = true;
 
