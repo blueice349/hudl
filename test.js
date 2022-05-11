@@ -32,7 +32,17 @@ async function goodLogin() {
         let loginTitle = await driver.getTitle();
         //assert that the title text is the correct "Log In"
         assert.strictEqual(loginTitle, "Log In");
-        
+    
+    } catch (e) {
+
+        console.log('goodLogin() FAILED');
+        await driver.quit();
+        assert.fail(e);
+    
+    }
+
+    try {
+
         //find email, password and login. Enter good email address, good password and click login
         await driver.findElement(By.css(emailInput)).sendKeys(hudlCorrectEmail);
         await driver.findElement(By.css(passwordInput)).sendKeys(hudlCorrectPassword);
@@ -48,7 +58,13 @@ async function goodLogin() {
         await driver.get(hudlLogoutUrl);
         let logoutUrl = await driver.getCurrentUrl();
         assert.strictEqual(logoutUrl, hudlUrl);
-        console.log("TEST PASSED");
+        console.log("goodLogin() PASSED");
+
+    } catch (e) {
+
+        console.log('goodLogin() FAILED');
+        await driver.quit();
+        assert.fail(e);    
 
     } finally {
         //close the browser
@@ -61,6 +77,7 @@ async function badEmailLogin() {
     let driver = await new Builder().forBrowser("chrome").build();
 
     try {
+
         //open the website
         await driver.get(hudlUrl);
         let hudlUrlTitle = await driver.getTitle();
@@ -70,6 +87,15 @@ async function badEmailLogin() {
         let loginTitle = await driver.getTitle();
         //assert that thetitle text is the correct "Log In"
         assert.strictEqual(loginTitle, "Log In");
+
+    } catch (e) {
+
+        console.log('badEmailLogin() FAILED');
+            await driver.quit();
+            assert.fail(e);
+    }
+
+    try {
 
         //find email, password and login. Enter bad email address, good password and click login
         await driver.findElement(By.css(emailInput)).sendKeys(hudlWrongEmail);
@@ -86,9 +112,15 @@ async function badEmailLogin() {
         let homeTitle = await driver.getTitle();
         //assert that thetitle text is the correct "Log In"
         assert.strictEqual(homeTitle, "Log In");
-        console.log("TEST PASSED");
+        console.log("badEmailLogin() PASSED");
 
-    } finally {
+    } catch (e) {
+
+        console.log('badEmailLogin() FAILED');
+        await driver.quit();
+        assert.fail(e);
+    
+     } finally {
         //close the browser
         await driver.quit();
     }
@@ -109,7 +141,17 @@ async function badPasswordLogin() {
         let loginTitle = await driver.getTitle();
         //assert that thetitle text is the correct "Log In"
         assert.strictEqual(loginTitle, "Log In");
+    
+    } catch (e) {
 
+        console.log('badPasswordLogin() TEST FAILED');
+        await driver.quit();
+        assert.fail(e);
+
+    }
+    
+    try {
+        
         //find email, password and login. Enter good email address, bad password and click login
         await driver.findElement(By.css(emailInput)).sendKeys(hudlCorrectEmail);
         await driver.findElement(By.css(passwordInput)).sendKeys(hudlWrongPassword);
@@ -125,7 +167,13 @@ async function badPasswordLogin() {
         let homeTitle = await driver.getTitle();
         //assert that thetitle text is the correct "Log In"
         assert.strictEqual(homeTitle, "Log In");
-        console.log("TEST PASSED");
+        console.log("badPasswordLogin() PASSED");
+    
+    } catch (e) {
+
+        console.log('badPasswordLogin() FAILED');
+        await driver.quit();
+        assert.fail(e);
 
     } finally {
         //close the browser
@@ -134,9 +182,10 @@ async function badPasswordLogin() {
 };
 
 const run = async () => {
-    await goodLogin();
-    await badEmailLogin();
-    await badPasswordLogin();
+
+   await goodLogin();
+   await badEmailLogin();
+   await badPasswordLogin(); 
 }
 
 run();
