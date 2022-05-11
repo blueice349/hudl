@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "nodemon test.js",
-        "single": "./node_modules/.bin/mocha single_test.js"
+        "single": "./node_modules/.bin/mocha loginTest.js"
     },
     "keywords": [
         "mocha",
