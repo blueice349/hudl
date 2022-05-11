@@ -68,18 +68,22 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    npm install
    ```
-4. Initialize the project in this folder. Open the IDE terminal and navigate to the project location. Run the following command
+4. Initialize the project in this folder. Open the IDE terminal and navigate to the project location. Run the following command only if the package.json is missing or has errors.
    ```sh
    npm init -y
    ```
-5. Now, install the project dependencies. We need to install Selenium WebDriver and browser drivers. Run the following command on the terminal to install browser drivers for Chrome. 
+5. I have included the node_modules, but if for some reason they fail to load you can install the project dependencies. You need to install Selenium WebDriver and browser drivers. Run the following command on the terminal to install browser drivers for Chrome. 
     ```sh
     npm install --save selenium-webdriver chromedriver geckodriver
     ```
-6. dd the following to your /.bash_profile or /.zshrc replace "yourEmail" and "yourPassword" with your own email and password. Save the file and make sure to source the changes in and/or close and reopen terminal.
+6. Add the following to your bash.
+    ```sh
     #hudl username and password
     export HUDL_CORRECT_EMAIL="yourEmail"
-    export HUDL_CORRECT_PASSWORD="yourPaassword"
+    export HUDL_CORRECT_PASSWORD="yourPaassword" 
+    ```
+    Replace "yourEmail" and "yourPassword" with your own email and password that is registered with https://hudle.com.
+
 7. Time for some action…let’s run the code by giving the following command on the terminal:
     ```sh
     node test.js
