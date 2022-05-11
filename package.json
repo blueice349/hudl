@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon single_test.js",
+        "start": "nodemon test.js",
         "single": "./node_modules/.bin/mocha single_test.js"
     },
     "keywords": [
