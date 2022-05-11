@@ -79,12 +79,7 @@ _Below is an example of how you to install and setting up your automation. This 
 
 2. Download the project folder in the desired location in your system. Open the folder in your IDE.
 
-3. To Install NPM packages. I have included them in this setup
-   ```sh
-   npm install --save-dev
-   ```
-
-4. Make sure the package includes the following dependiccs scripts and keywords:
+3. Make sure the package includes the following dependiccs scripts and keywords:
    ```json
         {
             "scripts": {
@@ -115,17 +110,23 @@ _Below is an example of how you to install and setting up your automation. This 
         }
     ```
     
-5. I have included mocha, but if for some reason mocha fails to load you can install mocha.
+4. Install NPM packages.
+    ```sh
+    npm install
+    ``
     ```sh
     npm install --save-dev mocha
+    ````
+    ```sh
+    npm install --save selenium-webdriver chromedriver geckodriver
     ```
 
-6. Install selenium-webdriver chromdriver if you want to use firefox you will also have to install this and call firefox in the test. for this test we will be using chrome. 
+5. Install selenium-webdriver chromdriver if you want to use firefox you will also have to install this and call firefox in the test. for this test we will be using chrome. 
     ```sh
     npm install --save selenium-webdriver chromedriver geckodriver
     ```  
 
-7. Add the following to your bash.
+6. Add the following to your bash.
     ```sh
     #hudl login email address and password
     export HUDL_CORRECT_EMAIL="yourEmail"
@@ -133,7 +134,7 @@ _Below is an example of how you to install and setting up your automation. This 
     ```
     Replace "yourEmail" and "yourPassword" with your own email and password that is registered with https://hudle.com.Failing to add this and/or not having a vaild login will result in the first test failing. 
 
-8. Time for some action…let’s run the code by giving the following command on the terminal:
+7. Time for some action…let’s run the code by giving the following command on the terminal:
     ```sh
      npm run hudlLogin
     ```
