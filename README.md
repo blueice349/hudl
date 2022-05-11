@@ -56,7 +56,7 @@ If Node JS (or Node.js) is not present on your machine, you can install the late
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+_Below is an example of how you to install and setting up your automation. This template does rely on any external dependencies and/or services._
 
 1. Clone the repo
    ```sh
