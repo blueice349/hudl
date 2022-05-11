@@ -44,9 +44,6 @@ let driver;
 
         driver = await new Builder().forBrowser('chrome').build();
 
-        } else {
-
-            console.log('Driver is alreqady running');
         }
 
         //should go to https://hudl.com and click the login button before each test
@@ -58,9 +55,6 @@ let driver;
             //find and click the login button
             await driver.findElement(By.css(login)).click();
             await loginPageCheck();
-            //let loginTitle = await driver.getTitle();
-            //should check that the title is the correct "Log In"
-            //assert.strictEqual(loginTitle, "Log In");
 
         } catch (e) {
 
@@ -87,11 +81,6 @@ let driver;
             await driver.quit();
             driverRunning = false;
         
-        } else {
-
-            console.log('Driver is already stopped');
-            driverRunning= false;
-
         }
 
     });
@@ -163,7 +152,6 @@ let driver;
             let videoElementPresent = await driver.wait(until.elementLocated(By.css(videoElement)), 30000).getText();
             assert.strictEqual(videoElementPresent, videoText);
             await goToHudlHomeUrl();
-            //await driver.get(hudlHomeUrl);
 
             //should check that the title text is the correct "Home - Hudl"
             let homeTitle = await driver.getTitle();
@@ -183,13 +171,9 @@ let driver;
         try {
 
             //find email, password and login. Then Enter good email address, good password and click login
-            console.log('1 ' + email);
             await driver.findElement(By.css(emailInput)).sendKeys(email);
-            console.log('2');
             await driver.findElement(By.css(passwordInput)).sendKeys(password);
-            console.log('3');
             await driver.findElement(By.css(loginBtn)).click();
-            console.log('4');
 
         } catch (e) {
 
