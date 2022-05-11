@@ -20,18 +20,37 @@ var hudlUrl = 'https://www.hudl.com/',
     passwordInput = '[data-qa-id="password-input"]',
     loginBtn = '[data-qa-id="login-btn"]',
     loginError = '[data-qa-id="error-display"]',
-    videoElement = '[data-qa-id="webnav-primarynav-video"]';
+    videoElement = '[data-qa-id="webnav-primarynav-video"]',
+    driverRunning;
 
 let driver;
-
+    
   describe('Hudl login test', function() {
+
+    before(async function () {
+
+        //sets time out that runs before all the test.
+        this.timeout(12000);
+
+          //should start the chrome browser before each test
+          driver = await new Builder().forBrowser('chrome').build();
+          driverRunning = true;
+
+    });
 
     beforeEach(async function () {
 
         this.timeout(120000);
 
         //should start the chrome browser before each test
+        if(!driverRunning){
+
         driver = await new Builder().forBrowser('chrome').build();
+
+        } else {
+
+            console.log('Driver is alreqady running');
+        }
 
         //should go to https://hudle.com and click the login button before each test
         try {
@@ -62,6 +81,23 @@ let driver;
 
         //should close the browswer and driver after each test
         await driver.quit();
+        driverRunning = false;
+
+    });
+
+    after(async function () {
+
+        //should close the browswer and driver after each test
+        if(driverRunning == true){
+
+            await driver.quit();
+            driverRunning = false;
+        
+        } else {
+
+            console.log('Driver has already stopped running');
+
+        }
 
     });
 
@@ -164,4 +200,5 @@ let driver;
 
         }
     });
+
   });
