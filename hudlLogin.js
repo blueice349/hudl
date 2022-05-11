@@ -69,7 +69,6 @@ let driver;
         } catch (e) {
 
             //catch any errors and fail the test
-            console.log('TEST FAILED');
             assert.fail(e);
 
         }
@@ -87,14 +86,15 @@ let driver;
     after(async function () {
 
         //should close the browswer and driver after all test run if still runing
-        if(driverRunning == true){
+        if(driverRunning){
 
             await driver.quit();
             driverRunning = false;
         
         } else {
 
-            console.log('Driver has already stopped running');
+            console.log('Driver is already stopped');
+            driverRunning= false;
 
         }
 
@@ -123,11 +123,9 @@ let driver;
             await driver.get(hudlLogoutUrl);
             let logoutUrl = await driver.getCurrentUrl();
             assert.strictEqual(logoutUrl, hudlUrl);
-            console.log("TEST PASSED");
 
         } catch (e) {
 
-            console.log('TEST FAILED');
             assert.fail(e);
 
         }
@@ -155,11 +153,9 @@ let driver;
             //should check that the title text is the correct "Log In"
             let homeTitle = await driver.getTitle();
             assert.strictEqual(homeTitle, "Log In");
-            console.log("TEST PASSED");
 
         } catch (e) {
 
-            console.log('badEmailLogin() FAILED');
             assert.fail(e);
 
         }
@@ -187,11 +183,9 @@ let driver;
             //should check that the title text is the correct "Log In"
             let homeTitle = await driver.getTitle();
             assert.strictEqual(homeTitle, "Log In");
-            console.log("TEST PASSED");
 
         } catch (e) {
 
-            console.log('TEST FAILED');
             assert.fail(e);
 
         }
