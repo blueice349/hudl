@@ -3,7 +3,14 @@
 # HUDL Login Automation Project
 
 <!-- PROJECT LOGO -->
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
 
+  <a href="https://info.hudl.com/contact-sales?_ga=2.67552465.116820452.1652144927-1055888508.1650769979&_gl=1*1jalygd*_ga*MTA1NTg4ODUwOC4xNjUwNzY5OTc5*_ga_B3MJ4DBX38*MTY1MjIzNTM1Mi43LjEuMTY1MjIzNTM1OC4w">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
+</div>
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
