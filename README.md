@@ -64,6 +64,7 @@ If Node JS (or Node.js) is not present on your machine, you can install the late
   ```sh
   npm install npm@latest -g
   ```
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Installation
 
@@ -135,7 +136,7 @@ _Below is an example of how you to install and setting up your automation. This 
 
 8. Add the following to your bash.
     ```sh
-    #hudl username and password
+    #hudl login email address and password
     export HUDL_CORRECT_EMAIL="yourEmail"
     export HUDL_CORRECT_PASSWORD="yourPaassword" 
     ```
@@ -147,8 +148,6 @@ _Below is an example of how you to install and setting up your automation. This 
     ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- USAGE EXAMPLES -->
 ## Usage
