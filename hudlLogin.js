@@ -8,15 +8,15 @@ var hudlUrl = 'https://www.hudl.com/',
     hudlHomeUrl = 'https://www.hudl.com/home',
     hudlLoginUrl = 'https://www.hudl.com/login',
     hudlLogoutUrl = 'https://www.hudl.com/logout',
-    login = '[data-qa-id="login"]',
     hudlCorrectEmail = process.env.HUDL_CORRECT_EMAIL,
     hudlCorrectPassword = process.env.HUDL_CORRECT_PASSWORD,
     hudlWrongEmail = 'wrongemail@wrongemail.com',
     hudlWrongPassword = 'wrongPassword',
-    emailInput = '[data-qa-id="email-input"]',
-    passwordInput = '[data-qa-id="password-input"]',
-    loginBtn = '[data-qa-id="login-btn"]',
-    loginError = '[data-qa-id="error-display"]',
+    loginElement = '[data-qa-id="login"]',
+    emailInputElement = '[data-qa-id="email-input"]',
+    passwordInputElement = '[data-qa-id="password-input"]',
+    loginBtnElement = '[data-qa-id="login-btn"]',
+    loginErrorElement = '[data-qa-id="error-display"]',
     videoElement = '[data-qa-id="webnav-primarynav-video"]',
     driverRunning;
 
@@ -53,7 +53,7 @@ let driver;
             await goToHudlUrl();
 
             //find and click the login button
-            await driver.findElement(By.css(login)).click();
+            await driver.findElement(By.css(loginElement)).click();
             await loginPageCheck();
 
         } catch (e) {
@@ -116,7 +116,7 @@ let driver;
             assert.strictEqual(hudlUrlTitle, "Hudl: We Help Teams and Athletes Win");
 
             //find and click the login button
-            await driver.findElement(By.css(login)).click();
+            await driver.findElement(By.css(loginElement)).click();
             await loginPageCheck();
 
         } catch (e) {
@@ -144,13 +144,14 @@ let driver;
 
     };
 
-    async function hudlHomePageCheck(videoText) {
+    async function hudlHomePageCheck() {
 
         try {
 
             //checks to see if we are on home page after login
+            await driver.sleep(2000);
             let videoElementPresent = await driver.wait(until.elementLocated(By.css(videoElement)), 30000).getText();
-            assert.strictEqual(videoElementPresent, videoText);
+            assert.strictEqual(videoElementPresent, "Video");
             await goToHudlHomeUrl();
 
             //should check that the title text is the correct "Home - Hudl"
@@ -171,9 +172,9 @@ let driver;
         try {
 
             //find email, password and login. Then Enter good email address, good password and click login
-            await driver.findElement(By.css(emailInput)).sendKeys(email);
-            await driver.findElement(By.css(passwordInput)).sendKeys(password);
-            await driver.findElement(By.css(loginBtn)).click();
+            await driver.findElement(By.css(emailInputElement)).sendKeys(email);
+            await driver.findElement(By.css(passwordInputElement)).sendKeys(password);
+            await driver.findElement(By.css(loginBtnElement)).click();
 
         } catch (e) {
 
@@ -204,8 +205,8 @@ let driver;
         try {
 
             //find the error text
-            await driver.sleep(3000);
-            let errorMessage = await driver.findElement(By.css(loginError)).getText();
+            await driver.sleep(2000);
+            let errorMessage = await driver.findElement(By.css(loginErrorElement)).getText();
             assert.strictEqual(errorMessage, "We didn't recognize that email and/or password.Need help?");
 
         } catch(e) {
@@ -234,7 +235,7 @@ let driver;
     };
 
     it('Should try to login to hudl with correct email and password', async function () {
-        this.skip();
+        
         //set the time out for this test to 2 mins, if 2 mins happens the test will fail.
         this.timeout(120000);
 
@@ -243,11 +244,8 @@ let driver;
             //should login to https://hudl.com with correct email and password
             await hudlLogin(hudlCorrectEmail, hudlCorrectPassword);
             
-            //wait for video element on page
-            let videoElementPresent = await driver.wait(until.elementLocated(By.css(videoElement)), 30000).getText();
-            
             //should check that the title text is the correct "Home - Hudl"
-            await hudlHomePageCheck(videoElementPresent);
+            await hudlHomePageCheck();
 
             //should naviage to the logout URL and make sure the page logged out.
             await hudlLogout();
@@ -286,7 +284,7 @@ let driver;
     });
 
     it('Should try to login to hudl with correct email and wrong password', async function () {
-        this.skip();
+        
         //set the time out for this test to 2 mins, if 2 mins happens the test will fail.
         this.timeout(120000);
 
