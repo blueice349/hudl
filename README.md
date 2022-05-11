@@ -113,7 +113,7 @@ _Below is an example of how you to install and setting up your automation. This 
 4. Install NPM packages.
     ```sh
     npm install
-    ``
+    ```
     ```sh
     npm install --save-dev mocha
     ````
