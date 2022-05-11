@@ -19,10 +19,12 @@ var loginError = '[data-qa-id="error-display"]';
 var videoElement = '[data-qa-id="webnav-primarynav-video"]';
 
 async function goodLogin() {
+
     //open Chrome browser
     let driver = await new Builder().forBrowser("chrome").build();
 
     try {
+        
         //open the website
         await driver.get(hudlUrl);
         let hudlUrlTitle = await driver.getTitle();
@@ -67,12 +69,14 @@ async function goodLogin() {
         assert.fail(e);    
 
     } finally {
+
         //close the browser
         await driver.quit();
     }
 };
 
 async function badEmailLogin() {
+
     //open Chrome browser
     let driver = await new Builder().forBrowser("chrome").build();
 
@@ -121,16 +125,19 @@ async function badEmailLogin() {
         assert.fail(e);
     
      } finally {
+
         //close the browser
         await driver.quit();
     }
 };
 
 async function badPasswordLogin() {
+
     //open Chrome browser
     let driver = await new Builder().forBrowser("chrome").build();
 
     try {
+
         //open the website
         await driver.get(hudlUrl);
         let hudlUrlTitle = await driver.getTitle();
@@ -176,6 +183,7 @@ async function badPasswordLogin() {
         assert.fail(e);
 
     } finally {
+
         //close the browser
         await driver.quit();
     }
