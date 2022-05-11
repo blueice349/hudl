@@ -50,20 +50,21 @@ This project is for hudl testing
 
 Before you start using JavaScript for Selenium automation testing, you need to ensure that your system is installed with the following pre-requisites:
 
-NodeJS and NPM
-Verify if NodeJS and NPM are already installed in your system by running the commands in terminal
-```sh
-node -v 
-```
-```sh
-npm -v 
-```
+1. NodeJS and NPM Verify if NodeJS and NPM are already installed in your system by running the commands in terminal
+    ```sh
+    node -v 
+    ```
+    ```sh
+    npm -v 
+    ```
 
-If Node JS (or Node.js) is not present on your machine, you can install the latest LTS version from https://nodejs.org/en/. NPM will be installed along with Node.js. So no need for separate installation..
-* npm
+2. If Node JS (or Node.js) is not present on your machine, you can install the latest LTS version from https://nodejs.org/en/. NPM will be installed along with Node.js. So no need for separate installation..
   ```sh
   npm install npm@latest -g
   ```
+
+3. For this test you will need to be on latest version of chrome 101+
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Installation
@@ -79,21 +80,12 @@ _Below is an example of how you to install and setting up your automation. This 
 
 3. To Install NPM packages. I have included them in this setup
    ```sh
-   npm install
+   npm install --save-dev
    ```
 
-4. Initialize the project in this folder. Open the IDE terminal and navigate to the project location. Run the following command only if the package.json is missing or has errors.
-   ```sh
-   npm init -y
-   ```  
-
-5. Make sure the package is set up as followed:
+4. Make sure the package includes the following dependiccs scripts and keywords:
    ```json
         {
-            "name": "hudl",
-            "version": "1.0.0",
-            "description": "",
-            "main": "index.js",
             "scripts": {
                 "test": "echo \"Error: no test specified\" && exit 1",
                 "hudlLogin": "./node_modules/.bin/mocha hudlLogin.js"
@@ -109,8 +101,6 @@ _Below is an example of how you to install and setting up your automation. This 
                 "tap",
                 "framework"
             ],
-            "author": "mike",
-            "license": "ISC",
             "dependencies": {
                 "chai": "^4.3.6",
                 "chromedriver": "^101.0.0",
@@ -124,25 +114,25 @@ _Below is an example of how you to install and setting up your automation. This 
         }
     ```
     
-6. I have included the node_modules, but if for some reason they fail to load you can install the project dependencies. You need to install Selenium WebDriver and browser drivers. Run the following command on the terminal to install browser drivers for Chrome. 
-    ```sh
-    npm install --save selenium-webdriver chromedriver geckodriver
-    ```
-
-7. I have included mocha, but if for some reason mocha fails to load you can install mocha.
+5. I have included mocha, but if for some reason mocha fails to load you can install mocha.
     ```sh
     npm install --save-dev mocha
-    ```    
+    ```
 
-8. Add the following to your bash.
+6. Install selenium-webdriver chromdriver if you want to use firefox you will also have to install this and call firefox in the test. for this test we will be using chrome. 
+    ```sh
+    npm install --save selenium-webdriver chromedriver geckodriver
+    ```  
+
+7. Add the following to your bash.
     ```sh
     #hudl login email address and password
     export HUDL_CORRECT_EMAIL="yourEmail"
     export HUDL_CORRECT_PASSWORD="yourPaassword" 
     ```
-    Replace "yourEmail" and "yourPassword" with your own email and password that is registered with https://hudle.com.
+    Replace "yourEmail" and "yourPassword" with your own email and password that is registered with https://hudle.com.Failing to add this and/or not having a vaild login will result in the first test failing. 
 
-9. Time for some action…let’s run the code by giving the following command on the terminal:
+8. Time for some action…let’s run the code by giving the following command on the terminal:
     ```sh
      npm run hudlLogin
     ```
@@ -151,6 +141,8 @@ _Below is an example of how you to install and setting up your automation. This 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+
+This is for testing loging in and out of hudl. A valid login to hudl.com is recommended.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

@@ -70,7 +70,6 @@ let driver;
 
             //catch any errors and fail the test
             console.log('TEST FAILED');
-            await driver.quit();
             assert.fail(e);
 
         }
@@ -129,7 +128,6 @@ let driver;
         } catch (e) {
 
             console.log('TEST FAILED');
-            await driver.quit();
             assert.fail(e);
 
         }
@@ -162,7 +160,6 @@ let driver;
         } catch (e) {
 
             console.log('badEmailLogin() FAILED');
-            await driver.quit();
             assert.fail(e);
 
         }
@@ -195,7 +192,6 @@ let driver;
         } catch (e) {
 
             console.log('TEST FAILED');
-            await driver.quit();
             assert.fail(e);
 
         }
