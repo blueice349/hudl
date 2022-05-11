@@ -57,6 +57,7 @@ Before you start using JavaScript for Selenium automation testing, you need to e
     ```sh
     npm -v 
     ```
+    "Error: Invalid URL: http:/" with Node.js v18: https://github.com/SeleniumHQ/selenium/issues/10619 
 
 2. If Node JS (or Node.js) is not present on your machine, you can install the latest LTS version from https://nodejs.org/en/. NPM will be installed along with Node.js. So no need for separate installation..
   ```sh
