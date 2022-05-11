@@ -11,7 +11,7 @@
   </a>
 </div> -->
 <!-- TABLE OF CONTENTS -->
-<details>
+<details open>
   <summary>Table of Contents</summary>
   <ol>
     <li>
@@ -46,7 +46,7 @@ This project is a sample to automate login functions on https:hudl.com. In this 
 
 This project is for hudl testing
 
-### Prerequisites for Selenium Webdriver with Javascript
+### Prerequisites
 
 Before you start using JavaScript for Selenium automation testing, you need to ensure that your system is installed with the following pre-requisites:
 
