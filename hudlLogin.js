@@ -52,7 +52,7 @@ let driver;
             console.log('Driver is alreqady running');
         }
 
-        //should go to https://hudle.com and click the login button before each test
+        //should go to https://hudl.com and click the login button before each test
         try {
 
             //open the website
