@@ -22,9 +22,9 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#help">Help</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -57,7 +57,6 @@ Before you start using JavaScript for Selenium automation testing, you need to e
     ```sh
     npm -v 
     ```
-    "Error: Invalid URL: http:/" with Node.js v18: https://github.com/SeleniumHQ/selenium/issues/10619 
 
 2. If Node JS (or Node.js) is not present on your machine, you can install the latest LTS version from https://nodejs.org/en/. NPM will be installed along with Node.js. So no need for separate installation..
   ```sh
@@ -140,13 +139,13 @@ _Below is an example of how you to install and setting up your automation. This 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-<!-- USAGE EXAMPLES -->
-## Usage
+<!-- known Errors & Help -->
+## Help
 
-This is for testing loging in and out of hudl. A valid login to hudl.com is recommended.
+<a herf="https://github.com/SeleniumHQ/selenium/issues/10619">[🐛 Bug]: "Error: Invalid URL: http:/" with Node.js v18 #10619</a>
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 <!-- CONTACT -->
 ## Contact
