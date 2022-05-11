@@ -161,7 +161,7 @@ _Below is an example of how you to install and setting up your automation. This 
 
 Mike Meyer - blueice349@gmail.com
 
-Project Link: [https://github.com/blueice349/hudl](https://github.com/blueice349/hudl)
+Project Link: https://github.com/blueice349/hudl](https://github.com/blueice349/hudl)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
