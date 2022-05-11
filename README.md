@@ -35,7 +35,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project is a sample to automate login functions on https:hudl.com. In this test we will log in with valid email and password, log out. We will try and log in with a bad email and good password and finally we will try to login with a good email and bad password. While doing this we are looking for elements on the page along with verifing data on the page like the page title etc...
+This is a sample project to automate login functions on https://hudl.com. In this test we will log in with valid email and password, log out. We will try and log in with a bad email and good password and finally we will try to login with a good email and bad password. While doing this we are looking for elements on the page along with verifing data on the page like the page title etc...
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -50,7 +50,7 @@ This project is for hudl testing
 
 Before you start using JavaScript for Selenium automation testing, you need to ensure that your system is installed with the following pre-requisites:
 
-1. NodeJS and NPM Verify if NodeJS and NPM are already installed in your system by running the commands in terminal</br>
+1. NodeJS and NPM. Verify if NodeJS and NPM are already installed in your system by running the commands in terminal</br>
     I recommend using node version less then v18. As I have outlined a bug with v18 in the help section that causes failures.
     ```sh
     node -v 
@@ -74,7 +74,7 @@ _Below is an example of how you to install and setting up your automation. This 
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/blueice349.git
+   git clone https://github.com/blueice349/hudl.git
    ```
 
 2. Download the project folder in the desired location in your system. Open the folder in your IDE.
@@ -119,22 +119,17 @@ _Below is an example of how you to install and setting up your automation. This 
     ````
     ```sh
     npm install --save selenium-webdriver chromedriver geckodriver
-    ```
-
-5. Install selenium-webdriver chromdriver if you want to use firefox you will also have to install this and call firefox in the test. for this test we will be using chrome. 
-    ```sh
-    npm install --save selenium-webdriver chromedriver geckodriver
     ```  
 
-6. Add the following to your bash.
+5. Add the following to your bash.
     ```sh
     #hudl login email address and password
     export HUDL_CORRECT_EMAIL="yourEmail"
-    export HUDL_CORRECT_PASSWORD="yourPaassword" 
+    export HUDL_CORRECT_PASSWORD="yourPassword" 
     ```
     Replace "yourEmail" and "yourPassword" with your own email and password that is registered with https://hudl.com.Failing to add this and/or not having a vaild login will result in the first test failing. 
 
-7. Time for some action…let’s run the code by giving the following command on the terminal:
+6. Time for some action…let’s run the code by giving the following command on the terminal:
     ```sh
      npm run hudlLogin
     ```

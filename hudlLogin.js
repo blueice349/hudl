@@ -1,6 +1,3 @@
-
-
-
 const {webdriver, Builder, By, Key, until} = require('selenium-webdriver'),
     test = require('selenium-webdriver/testing'),
     assert = require('assert'),
@@ -76,7 +73,7 @@ let driver;
 
     afterEach(async function () {
 
-        //should close the browswer and driver after each test
+        //should close the browser and driver after each test
         await driver.quit();
         driverRunning = false;
 
@@ -84,7 +81,7 @@ let driver;
 
     after(async function () {
 
-        //should close the browswer and driver after all test run if still runing
+        //should close the browser and driver after all test run if still runing
         if(driverRunning){
 
             await driver.quit();
