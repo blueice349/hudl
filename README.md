@@ -50,8 +50,8 @@ This project is for hudl testing
 
 Before you start using JavaScript for Selenium automation testing, you need to ensure that your system is installed with the following pre-requisites:
 
-1. NodeJS and NPM Verify if NodeJS and NPM are already installed in your system by running the commands in terminal
-    Make sure to ne on node version less then v18 as I have outlined a bug with v18 in the help section.
+1. NodeJS and NPM Verify if NodeJS and NPM are already installed in your system by running the commands in terminal</br>
+    I recommend using node version less then v18. As I have outlined a bug with v18 in the help section that causes failures.
     ```sh
     node -v 
     ```
