@@ -87,7 +87,7 @@ let driver;
 
     after(async function () {
 
-        //should close the browswer and driver after each test
+        //should close the browswer and driver after all test run if still runing
         if(driverRunning == true){
 
             await driver.quit();
