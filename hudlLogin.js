@@ -14,7 +14,7 @@ var hudlUrl = 'https://www.hudl.com/',
     login = '[data-qa-id="login"]',
     hudlCorrectEmail = process.env.HUDL_CORRECT_EMAIL,
     hudlCorrectPassword = process.env.HUDL_CORRECT_PASSWORD,
-    hudlWrongEmail = 'wrongemail@wrongemail.ccom',
+    hudlWrongEmail = 'wrongemail@wrongemail.com',
     hudlWrongPassword = 'wrongPassword',
     emailInput = '[data-qa-id="email-input"]',
     passwordInput = '[data-qa-id="password-input"]',
@@ -219,9 +219,13 @@ let driver;
         try {
 
             //find email, password and login. Then Enter good email address, good password and click login
+            console.log('1 ' + email);
             await driver.findElement(By.css(emailInput)).sendKeys(email);
+            console.log('2');
             await driver.findElement(By.css(passwordInput)).sendKeys(password);
+            console.log('3');
             await driver.findElement(By.css(loginBtn)).click();
+            console.log('4');
 
         } catch (e) {
 
@@ -282,19 +286,19 @@ let driver;
         try {
 
             //should try to login to https://hudl.com with wrong email and correct password
-            //hudlLogin(hudlWrongEmail, hudlCorrectPassword);
-            try {
+            hudlLogin(hudlWrongEmail, hudlCorrectPassword);
+            //try {
 
                 //find email, password and login. Then Enter good email address, good password and click login
-                await driver.findElement(By.css(emailInput)).sendKeys(hudlWrongEmail);
-                await driver.findElement(By.css(passwordInput)).sendKeys(hudlCorrectPassword);
-                await driver.findElement(By.css(loginBtn)).click();
+                // await driver.findElement(By.css(emailInput)).sendKeys(hudlWrongEmail);
+                // await driver.findElement(By.css(passwordInput)).sendKeys(hudlCorrectPassword);
+                // await driver.findElement(By.css(loginBtn)).click();
 
-            } catch (e) {
+            //} catch (e) {
 
-                assert.fail(e);
+               // assert.fail(e);
 
-            }
+            //}
         
             //find the login error text
             loginError();
