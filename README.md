@@ -3,13 +3,7 @@
 # HUDL Login Automation Project
 
 <!-- PROJECT LOGO -->
-<!-- <br />
-<div align="center">
 
-  <a href="https://info.hudl.com/contact-sales?_ga=2.67552465.116820452.1652144927-1055888508.1650769979&_gl=1*1jalygd*_ga*MTA1NTg4ODUwOC4xNjUwNzY5OTc5*_ga_B3MJ4DBX38*MTY1MjIzNTM1Mi43LjEuMTY1MjIzNTM1OC4w">
-    <img src="images/logo.png" alt="Logo" width="100%" height="400px">
-  </a>
-</div> -->
 <!-- TABLE OF CONTENTS -->
 <details open>
   <summary>Table of Contents</summary>
@@ -30,16 +24,12 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 This is a sample project to automate login functions on https://hudl.com. In this test we will log in with valid email and password, log out. We will try and log in with a bad email and good password and finally we will try to login with a good email and bad password. While doing this we are looking for elements on the page along with verifing data on the page like the page title etc...
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -152,8 +142,6 @@ Mike Meyer - blueice349@gmail.com
 Project Link: https://github.com/blueice349/hudl
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
