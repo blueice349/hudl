@@ -60,7 +60,7 @@ Before you start using JavaScript for Selenium automation testing, you need to e
 
 ### Installation
 
-_Below is an example of how you to install and setting up your automation. This template does rely on external dependencies and/or services. This also requires a valid login to http://hudl.com_
+_Below is an example of how you to install and setting up your automation. This template does rely on external dependencies and/or services. This also requires a valid login to https://hudl.com_
 
 1. Clone the repo
    ```sh
