@@ -205,7 +205,7 @@ let driver;
         try {
 
             //find the error text
-            await driver.sleep(3000);
+            await driver.sleep(4000);;
             errorMessage = await driver.findElement(By.css(loginErrorElement)).getText();
             assert.strictEqual(errorMessage, "We didn't recognize that email and/or password.Need help?");
 
@@ -265,7 +265,7 @@ let driver;
 
             //should try to login to https://hudl.com with wrong email and correct password
            await hudlLogin(hudlWrongEmail, hudlCorrectPassword);
-        
+
             //find the login error text
             await loginError();
 
