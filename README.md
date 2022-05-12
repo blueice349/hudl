@@ -114,10 +114,10 @@ _Below is an example of how you to install and setting up your automation. This 
 5. Add the following to your bash.
     ```sh
     #hudl login email address and password
-    export HUDL_CORRECT_EMAIL="yourEmail"
-    export HUDL_CORRECT_PASSWORD="yourPassword" 
+    export HUDL_CORRECT_EMAIL="validEmail"
+    export HUDL_CORRECT_PASSWORD="validPassword" 
     ```
-    Replace "yourEmail" and "yourPassword" with your own email and password that is registered with https://hudl.com.Failing to add this and/or not having a vaild login will result in the first test failing. 
+    Replace "valiedEmail" and "validPassword" with a valid email and password that is registered with https://hudl.com.Failing to add this and/or not having a vaild login will result in the first test failing. 
 
 6. Time for some action…let’s run the code by giving the following command on the terminal:
     ```sh
