@@ -206,9 +206,10 @@ let driver;
         try {
 
             //find the error text
-            await driver.sleep(4000);;
-            errorMessage = await driver.findElement(By.css(loginErrorElement)).getText();
-            assert.strictEqual(errorMessage, "We didn't recognize that email and/or password.Need help?");
+            let errorMessageText = await driver.wait(until.elementLocated(By.css(loginErrorElement)), 20000, 'Timed out after 20 seconds', 1000);
+            await driver.wait(until.elementIsVisible(errorMessageText), 4000, 'Timed out looking for the login error message element');
+            errorMessageText = await driver.findElement(By.css(loginErrorElement)).getText();
+            assert.strictEqual(errorMessageText, "We didn't recognize that email and/or password.Need help?");
 
         } catch(e) {
 
@@ -224,7 +225,7 @@ let driver;
             //should check that the title text is the correct "Home - Hudl"
             await driver.get(hudlLogoutUrl);
             let logoutUrl = await driver.getCurrentUrl();
-            assert.strictEqual(logoutUrl, hudlUrl)
+            assert.strictEqual(logoutUrl, hudlUrl);
 
         } catch (e) {
 
