@@ -149,19 +149,19 @@ let driver;
         try {
 
             //checks to see if we are on home page after login
-            await driver.sleep(2000);
-            let videoElementPresent = await driver.wait(until.elementLocated(By.css(videoElement)), 30000).getText();
+            let videoElementPresent = await driver.wait(until.elementLocated(By.css(videoElement)), 10000);
+            videoElementPresent = await driver.findElement(By.css(videoElement)).getText();
             assert.strictEqual(videoElementPresent, "Video");
             await goToHudlHomeUrl();
 
             //should check that the title text is the correct "Home - Hudl"
             let homeTitle = await driver.getTitle();
             assert.strictEqual(homeTitle, "Home - Hudl");
+            success = true;
 
         } catch (e) {
 
             assert.fail(e);
-
         }
 
     };
@@ -205,14 +205,13 @@ let driver;
         try {
 
             //find the error text
-            await driver.sleep(2000);
-            let errorMessage = await driver.findElement(By.css(loginErrorElement)).getText();
+            await driver.sleep(3000);
+            errorMessage = await driver.findElement(By.css(loginErrorElement)).getText();
             assert.strictEqual(errorMessage, "We didn't recognize that email and/or password.Need help?");
 
         } catch(e) {
 
             assert.fail(e);
-
         }
 
     };
