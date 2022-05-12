@@ -94,6 +94,7 @@ let driver;
             let currentUrl = await driver.getCurrentUrl();
             assert.strictEqual(currentUrl, hudlUrl);
             let hudlUrlTitle = await driver.getTitle();
+            
             //should check that the title is correcct "Hudl: We Help Teams and Athletes Win"
             assert.strictEqual(hudlUrlTitle, "Hudl: We Help Teams and Athletes Win");
 
