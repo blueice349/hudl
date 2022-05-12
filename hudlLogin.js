@@ -235,7 +235,7 @@ let driver;
 
     };
 
-    it('Should try to login to hudl with correct email and password', async function () {
+    it('Should login to hudl.com with correct email and password', async function () {
         
         //set the time out for this test to 2 mins, if 2 mins happens the test will fail.
         this.timeout(120000);
@@ -258,7 +258,7 @@ let driver;
         }
     });
 
-    it('Should try to login to hudl with wrong email and correct password', async function () {
+    it('Should try to login to hudl.com with wrong email and correct password', async function () {
 
         //set the time out for this test to 2 mins, if 2 mins happens the test will fail.
         this.timeout(120000);
@@ -284,7 +284,7 @@ let driver;
         }
     });
 
-    it('Should try to login to hudl with correct email and wrong password', async function () {
+    it('Should try to login to hudl.com with correct email and wrong password', async function () {
         
         //set the time out for this test to 2 mins, if 2 mins happens the test will fail.
         this.timeout(120000);
