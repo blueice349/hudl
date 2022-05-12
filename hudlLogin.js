@@ -158,7 +158,6 @@ let driver;
             //should check that the title text is the correct "Home - Hudl"
             let homeTitle = await driver.getTitle();
             assert.strictEqual(homeTitle, "Home - Hudl");
-            success = true;
 
         } catch (e) {
 
