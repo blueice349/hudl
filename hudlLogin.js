@@ -206,7 +206,7 @@ describe('Running Hudl login test', function () {
 
             //find the error text
             let errorMessageText = await driver.wait(until.elementLocated(By.css(loginErrorElement)), 20000, 'Timed out after 20 seconds', 1000);
-            await driver.wait(until.elementIsVisible(errorMessageText), 5000, 'Timed out looking for the login error message element');
+            await driver.wait(until.elementIsVisible(errorMessageText), 10000, 'Timed out looking for the login error message element');
             errorMessageText = await driver.findElement(By.css(loginErrorElement)).getText();
             assert.strictEqual(errorMessageText, "We didn't recognize that email and/or password.Need help?");
 
