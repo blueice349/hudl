@@ -1,4 +1,4 @@
-const {webdriver, Builder, By, Key, until} = require('selenium-webdriver'),
+const { webdriver, Builder, By, Key, until } = require('selenium-webdriver'),
     test = require('selenium-webdriver/testing'),
     assert = require('assert'),
     chai = require('chai'),
@@ -19,19 +19,19 @@ var hudlUrl = 'https://www.hudl.com/',
     loginErrorElement = '[data-qa-id="error-display"]',
     videoElement = '[data-qa-id="webnav-primarynav-video"]',
     driverRunning;
- 
+
 let driver;
-    
-  describe('Running Hudl login test', function() {
+
+describe('Running Hudl login test', function () {
 
     before(async function () {
 
         //sets time out that runs before all the test.
         this.timeout(12000);
 
-          //should start the chrome browser before any test runs
-          driver = await new Builder().forBrowser('chrome').build();
-          driverRunning = true;
+        //should start the chrome browser before any test runs
+        driver = await new Builder().forBrowser('chrome').build();
+        driverRunning = true;
 
     });
 
@@ -40,9 +40,9 @@ let driver;
         this.timeout(120000);
 
         //should start the chrome browser before each test
-        if(!driverRunning){
+        if (!driverRunning) {
 
-        driver = await new Builder().forBrowser('chrome').build();
+            driver = await new Builder().forBrowser('chrome').build();
 
         }
 
@@ -76,11 +76,11 @@ let driver;
     after(async function () {
 
         //should close the browser and driver after all test run if still runing
-        if(driverRunning){
+        if (driverRunning) {
 
             await driver.quit();
             driverRunning = false;
-        
+
         }
 
     });
@@ -111,7 +111,7 @@ let driver;
         try {
 
             //go to hudl.com
-           await goToHudlUrl();
+            await goToHudlUrl();
 
             //should check that the title is correcct "Hudl: We Help Teams and Athletes Win"
             assert.strictEqual(hudlUrlTitle, "Hudl: We Help Teams and Athletes Win");
@@ -201,7 +201,7 @@ let driver;
     };
 
     async function loginError() {
-        
+
         try {
 
             //find the error text
@@ -210,7 +210,7 @@ let driver;
             errorMessageText = await driver.findElement(By.css(loginErrorElement)).getText();
             assert.strictEqual(errorMessageText, "We didn't recognize that email and/or password.Need help?");
 
-        } catch(e) {
+        } catch (e) {
 
             assert.fail(e);
         }
@@ -235,7 +235,7 @@ let driver;
     };
 
     it('Should login to hudl.com with correct email and password', async function () {
-        
+
         //set the time out for this test to 2 mins, if 2 mins happens the test will fail.
         this.timeout(120000);
 
@@ -243,7 +243,7 @@ let driver;
 
             //should login to https://hudl.com with correct email and password
             await hudlLogin(hudlCorrectEmail, hudlCorrectPassword);
-            
+
             //should check that the title text is the correct "Home - Hudl"
             await hudlHomePageCheck();
 
@@ -265,7 +265,7 @@ let driver;
         try {
 
             //should try to login to https://hudl.com with wrong email and correct password
-           await hudlLogin(hudlWrongEmail, hudlCorrectPassword);
+            await hudlLogin(hudlWrongEmail, hudlCorrectPassword);
 
             //find the login error text
             await loginError();
@@ -284,7 +284,7 @@ let driver;
     });
 
     it('Should try to login to hudl.com with correct email and wrong password', async function () {
-        
+
         //set the time out for this test to 2 mins, if 2 mins happens the test will fail.
         this.timeout(120000);
 
@@ -309,4 +309,4 @@ let driver;
         }
     });
 
-  });
+});
