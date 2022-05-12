@@ -117,7 +117,7 @@ _Below is an example of how you to install and setting up your automation. This 
     export HUDL_CORRECT_EMAIL="validEmail"
     export HUDL_CORRECT_PASSWORD="validPassword" 
     ```
-    Replace "valiedEmail" and "validPassword" with a valid email and password that is registered with https://hudl.com.Failing to add this and/or not having a vaild login will result in the first test failing. 
+    Replace "validEmail" and "validPassword" with a valid email and password that is registered with https://hudl.com.Failing to add this and/or not having a vaild login will result in the first test failing. 
 
 6. Time for some action…let’s run the code by giving the following command on the terminal:
     ```sh
