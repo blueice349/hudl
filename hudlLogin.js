@@ -1,5 +1,4 @@
 const { webdriver, Builder, By, Key, until } = require('selenium-webdriver'),
-    test = require('selenium-webdriver/testing'),
     assert = require('assert'),
     chai = require('chai'),
     expect = require('chai').expect;
