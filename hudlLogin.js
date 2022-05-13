@@ -49,12 +49,8 @@ describe('Running Hudl login test', function () {
         //should go to https://hudl.com and click the login button before each test
         try {
 
-            //go to hudl.com website
-            await goToHudlUrl();
-
-            //find and click the login button
-            await driver.findElement(By.css(loginElement)).click();
-            await loginPageCheck();
+            //go  to hudle.com find and click the login button. Verify you are on the login page.
+            await goToHudlLoginPage()
 
         } catch (e) {
 
@@ -112,9 +108,6 @@ describe('Running Hudl login test', function () {
 
             //go to hudl.com
             await goToHudlUrl();
-
-            //should check that the title is correcct "Hudl: We Help Teams and Athletes Win"
-            assert.strictEqual(hudlUrlTitle, "Hudl: We Help Teams and Athletes Win");
 
             //find and click the login button
             await driver.findElement(By.css(loginElement)).click();
