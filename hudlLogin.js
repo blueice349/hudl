@@ -46,19 +46,6 @@ describe('Running Hudl login test', function () {
 
         }
 
-        //should go to https://hudl.com and click the login button before each test
-        try {
-
-            //go  to hudle.com find and click the login button. Verify you are on the login page.
-            await goToHudlLoginPage();
-
-        } catch (e) {
-
-            //catch any errors and fail the test
-            assert.fail(e);
-
-        }
-
     });
 
     afterEach(async function () {
