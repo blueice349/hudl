@@ -50,7 +50,7 @@ describe('Running Hudl login test', function () {
         try {
 
             //go  to hudle.com find and click the login button. Verify you are on the login page.
-            await goToHudlLoginPage()
+            await goToHudlLoginPage();
 
         } catch (e) {
 
@@ -127,8 +127,8 @@ describe('Running Hudl login test', function () {
 
             //should check that the title text is the correct "Home - Hudl"
             await driver.get(hudlHomeUrl);
-            let currentUrl = await driver.getCurrentUrl();
-            assert.strictEqual(currentUrl, hudlHomeUrl);
+            await hudlHomePageCheck();
+
 
         } catch (e) {
 
@@ -146,9 +146,8 @@ describe('Running Hudl login test', function () {
             let videoElementPresent = await driver.wait(until.elementLocated(By.css(videoElement)), 10000);
             videoElementPresent = await driver.findElement(By.css(videoElement)).getText();
             assert.strictEqual(videoElementPresent, "Video");
-            await goToHudlHomeUrl();
-
-            //should check that the title text is the correct "Home - Hudl"
+            let currentUrl = await driver.getCurrentUrl();
+            assert.strictEqual(currentUrl, hudlHomeUrl);
             let homeTitle = await driver.getTitle();
             assert.strictEqual(homeTitle, "Home - Hudl");
 
@@ -165,6 +164,7 @@ describe('Running Hudl login test', function () {
         try {
 
             //find email, password and login. Then Enter good email address, good password and click login
+            await goToHudlLoginPage();
             await driver.findElement(By.css(emailInputElement)).sendKeys(email);
             await driver.findElement(By.css(passwordInputElement)).sendKeys(password);
             await driver.findElement(By.css(loginBtnElement)).click();
